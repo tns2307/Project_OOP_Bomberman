@@ -1,11 +1,20 @@
 package game;
 
+import java.awt.Image;
+import java.awt.image.ImageObserver;
+
+import javax.swing.ImageIcon;
+
 public class Grass extends Tiles{
 	private Player player;
 	private Monster monster;
 	private Item item;
 	private Brick brick=null;
 	private Bomb bomb=null; //TODO: saat player place_bomb, ubah is_accesible menjadi false; saat bomb meledak, ubah is_accessible menjadi true;
+	private ImageIcon brickWall = new ImageIcon("fix/brick.png");
+	private ImageIcon grass = new ImageIcon("fix/grass.png");
+	private ImageIcon image = grass;
+	
 	public Player getPlayer() {
 		return player;
 	}
@@ -35,7 +44,15 @@ public class Grass extends Tiles{
 	}
 
 	public void setBrick(Brick brick) {
-		this.brick = brick;
+		if(brick == null) {
+			this.is_accesible = true;
+			this.brick = null;
+			this.image = grass;
+		}else {
+			this.is_accesible = false;
+			this.brick = brick;
+			this.image = brickWall;
+		}
 	}
 
 	public Bomb getBomb() {
@@ -48,7 +65,6 @@ public class Grass extends Tiles{
 
 
 	Grass(){
-		//import image
 		is_accesible=true;
 	}
 	
@@ -63,7 +79,17 @@ public class Grass extends Tiles{
 			case 2:
 				item=(Item)new BombCountBooster();
 				break;
-			
+			case 3:
+				item= (Item)new Key();
+				break;
 		}
+	}
+	
+	public Image getImage() {
+		return image.getImage();
+	}
+	
+	protected ImageObserver getImageObserver() {
+		return image.getImageObserver();
 	}
 }

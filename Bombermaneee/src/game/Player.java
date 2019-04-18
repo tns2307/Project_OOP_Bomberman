@@ -18,8 +18,6 @@ public class Player extends JFrame{
 	public int locY;
 	public int temp_locX;
 	public int temp_locY;
-	
-	
 
 	public int getHealth() {
 		return health;
