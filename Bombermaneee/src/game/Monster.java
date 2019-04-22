@@ -1,6 +1,10 @@
 package game;
 
+import java.awt.Image;
+import java.awt.image.ImageObserver;
 import java.util.Random;
+
+import javax.swing.ImageIcon;
 
 public class Monster{
 	private int coorX;
@@ -8,6 +12,7 @@ public class Monster{
 	private int locX;
 	private int locY;
 	private int health;
+	private ImageIcon monster = new ImageIcon("fix/monster.png");
 	
 	public int getCoorX() {
 		return coorX;
@@ -55,6 +60,14 @@ public class Monster{
 				break;
 		}
 		
+	}
+	
+	public Image getImage() {
+		return monster.getImage();
+	}
+	
+	protected ImageObserver getImageObserver() {
+		return monster.getImageObserver();
 	}
 	
 }
